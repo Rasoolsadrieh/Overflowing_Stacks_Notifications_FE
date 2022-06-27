@@ -11,11 +11,11 @@ import { ListGroup } from "react-bootstrap";
 
 export default function Notifications() {
     const [menuBody, setMenuBody] = useState([]);
-    const [menuBodyRecent, setMenuBodyRecent] = useState([]);
+    
     const [menu, setMenu] = useState(true);
     const [menuRecent, setMenuRecent] = useState(true);
     const [user, setUser] = useContext(userContext);
-    const url = "https://localhost:3001";
+    const url = "https://overflowingstacks.azurewebsites.net";
     //console.log(user)
     useEffect(() => {
         findAll();
@@ -27,12 +27,12 @@ export default function Notifications() {
     async function findAll() {
         try {
             console.log((`${url}`))
-            const response = await fetch(`${url}`);
+            const response = await fetch(`${url}`+ "/notification");
             const menus = await response.json();
             console.log(menus);
             const menuTableRows = menus.map((e) => {
-                if (e.usernameNotification.username === user.username){
-                    const url=e.url
+                if (e.user.email === user.username){
+                    const message=e.noti_con //TODO: what we are pulling
                 return (
                     <tr>
                         <a target="_blank" rel="noopener noreferrer" href={url}><td  width="200">{e.fieldFour}</td></a>
@@ -46,35 +46,7 @@ export default function Notifications() {
             console.error(e);
         }
     }
-    async function findAllRecent() {
-        try {
-            console.log((`${url}`))
-            const response = await fetch(`${url}`);
-            const menus = await response.json();
-            console.log(menus);
-            let total=0
-            const Space ="  "
-            const menuTableRows = menus.slice(0).reverse().map((e) => {
-                
-                if (total< 5){
-                    const url=e.url
-                    total=total+1
-                return (
-                    <tr>
-                        <td>{e.usernameNotification.username}  </td>
-                       
-                        <a target="_blank" rel="noopener noreferrer" href={url}><td  width="200"></td></a>
-                    </tr>
-                );
-                
-                }
-            });
-            setMenuBodyRecent(menuTableRows);
-            console.log(menus);
-        } catch (e) {
-            console.error(e);
-        }
-    }
+   
     return (
     
        <>
@@ -105,33 +77,7 @@ export default function Notifications() {
         </ListGroup>
         </List>
         </div>
-        <div>
-         <h2>Recent Notifications</h2>
-            <List
-        sx={{
-            width: '100%',
-            maxWidth: 360,
-            bgcolor: 'background.paper',
-            position: 'relative',
-            overflow: 'auto',
-            maxHeight: 300,
-            '& ul': { padding: 0 },
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            alignItems: 'center',
-            bgcolor: 'background.paper',
-            borderRadius: '12px',
-            boxShadow: 1,
-            fontWeight: 'bold',
-        }}
-        subheader={<li />}
-        >
-            
-        <ListGroup>
-            {menuBodyRecent}
-        </ListGroup>
-        </List>
-        </div>
+        
         </>
     );
 }
