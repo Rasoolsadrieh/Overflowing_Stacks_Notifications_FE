@@ -20,9 +20,7 @@ export default function Notifications() {
     useEffect(() => {
         findAll();
     }, [menu]);
-    useEffect(() => {
-        findAllRecent();
-    }, [menuRecent]);
+    
     // Async/Await in JS, this came around in 2016 (ECMAScript6)
     async function findAll() {
         try {
@@ -31,11 +29,11 @@ export default function Notifications() {
             const menus = await response.json();
             console.log(menus);
             const menuTableRows = menus.map((e) => {
-                if (e.user.email === user.username){
+                if (e.user.email === user.email){
                     const message=e.noti_con //TODO: what we are pulling
                 return (
                     <tr>
-                        <a target="_blank" rel="noopener noreferrer" href={url}><td  width="200">{e.fieldFour}</td></a>
+                        <a target="_blank" rel="noopener noreferrer" href={message}><td  width="200"></td></a>
                     </tr>
                 );
                 }
