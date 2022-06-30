@@ -31,10 +31,12 @@ export default function MoneyRecieved(){
                 console.error(error.response2.data);
                 
             }
-        }
-     
-            };
-              
+            if(Payment == true)
+            <Link href="notification">
+            <Badge color="secondary" badgeContent={}>
+  <PaidIcon />
+</Badge>
+</Link>
         //       componentWillUnmount() {
         //         this.timer = null; 
         //       }
