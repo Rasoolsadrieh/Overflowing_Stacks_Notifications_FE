@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MoneyRecieved from "./components/notifications/notific";
 import Notifications from "./components/notifications/notificationbar";
 ;
 
@@ -17,6 +18,8 @@ function App() {
                 {/* <Route path="" element={<Welcome />} />
                 <Route path="/" element={<Welcome />} /> */
               <Route path="/notifications" element={<Notifications />} />}
+              <Route path="/notification" element={<MoneyRecieved />} />
+              
               </Routes>
          </userContext.Provider>
      </BrowserRouter>

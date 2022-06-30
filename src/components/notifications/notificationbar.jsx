@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { userContext } from "../../App";
 import * as React from 'react';
-
+import Payment from "../sendmoney/transfermoney";
+import PaidIcon from '@mui/icons-material/Paid';
+import { Link } from "@mui/material";
 //import { FixedSizeList } from 'react-window';
 
 import List from '@mui/material/List';
@@ -43,6 +45,65 @@ export default function Notifications() {
         } catch (e) {
             console.error(e);
         }
+        async function MoneyRecieved(){
+
+            const[moneyRecieved, setMoneyRecieved] = useState()
+            const[user, setUser] = useState()
+            
+            if (Payment (isRecieved == false)) {
+             
+              } else {
+                useEffect(()  => {
+                    const fetchData = async () => isRecieved == true && <h3> You have recieved money! </h3>});
+                };
+                   
+                    componentDidMount() 
+                        this.timer = setInterval(()=> this.getMoney(), 10000);
+                        return () => clearInterval(interval);
+                      };
+                    }
+                    try {
+                        const response = await axios.put(`${url}/notification`, user);
+                        const response2 = await axios.put(`${url}/notification`, MoneyRecieved);
+                        console.log(response.data);
+                        console.log(response2.data);
+                        setMoneyRecieved(!isRecieved)
+            
+            
+                     
+                    } catch (error) {
+                        console.error(error.response.data);
+                        console.error(error.response2.data);
+                        
+                    }
+                    if(Payment == true)
+                    <Link href="notification">
+                    <Badge color="secondary">
+          <PaidIcon />
+        </Badge>
+        </Link>
+        
+              
+                      
+                //       componentWillUnmount() {
+                //         this.timer = null; 
+                //       }
+                      
+                //       getMoney() {
+                //         fetch(this.getIsRecieved('https://overflowingstacksweb.azurewebsites.net/notification'))
+                //           .then(isRecieved => result.json())
+                //           .then(isReceived => this.setState({ money: result }));
+                //       };
+                //     }
+                // onPayment={this.findAll}
+                // update
+              
+              
+              
+            
+        
+            
+         
     }
    
     return (
@@ -78,4 +139,3 @@ export default function Notifications() {
         
         </>
     );
-}
